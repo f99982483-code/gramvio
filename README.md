@@ -1,101 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRAMVIO - Instagram Followers Growth</title>
+  <title>GRAMVIO</title>
   <style>
-    body { margin:0; font-family: Arial, sans-serif; background:#f5f5f5; color:#222; }
-    header { background:#111; color:#fff; padding:20px; display:flex; align-items:center; justify-content:space-between; }
-    header img { height:50px; }
-    nav a { color:#fff; margin-left:20px; text-decoration:none; font-weight:bold; }
-    section { padding:40px 20px; max-width:900px; margin:auto; }
-    .card { background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-bottom:20px; }
-    input, select { width:100%; padding:10px; margin:10px 0; border-radius:6px; border:1px solid #ccc; }
-    button { background:#111; color:#fff; padding:10px 20px; border:none; border-radius:6px; cursor:pointer; }
-    button:hover { background:#333; }
-    footer { background:#111; color:#aaa; text-align:center; padding:15px; }
+    body { font-family: Arial; background:#f5f5f5; }
+    .box {
+      background:#fff;
+      padding:20px;
+      max-width:400px;
+      margin:50px auto;
+      border-radius:10px;
+      box-shadow:0 0 10px #ccc;
+    }
+    input, select, button {
+      width:100%;
+      padding:10px;
+      margin-top:10px;
+      font-size:16px;
+    }
+    button {
+      background:#27ae60;
+      color:white;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+    }
+    .hidden { display:none; }
   </style>
 </head>
 <body>
 
-<header>
-  <img src="logop.png" alt="GRAMVIO Logo">
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#payment">Payment</a>
-  </nav>
-</header>
+<div class="box">
 
-<section id="home">
-  <div class="card">
-    <h2>Grow Your Instagram</h2>
-    <p>Enter your details below to get started:</p>
-    <form id="orderForm">
-      <label>Name</label>
-      <input type="text" placeholder="Enter your name" required>
-
-      <label>Instagram Username</label>
-      <input type="text" placeholder="@yourusername" required>
-
-      <label>Mobile Number</label>
-      <input type="tel" placeholder="Enter mobile number" required>
-
-      <label>Instagram Followers Range</label>
-      <select required>
-        <option value="">Select followers range</option>
-        <option value="1K-5K">1K - 5K</option>
-        <option value="5K-10K">5K - 10K</option>
-        <option value="10K-25K">10K - 25K</option>
-        <option value="25K-50K">25K - 50K</option>
-        <option value="50K-100K">50K - 100K</option>
-        <option value="100K+">100K+</option>
-      </select>
-
-      <button type="submit">Order Now on WhatsApp</button>
-    </form>
+  <!-- STEP 1: CUSTOMER DETAILS -->
+  <div id="step1">
+    <h2>Enter Details</h2>
+    <input id="name" placeholder="Name">
+    <input id="mobile" placeholder="Mobile Number">
+    <input id="insta" placeholder="Instagram ID">
+    <button onclick="goStep2()">Next</button>
   </div>
-</section>
 
-<section id="pricing">
-  <div class="card">
-    <h3>Pricing</h3>
-    <p><strong>1K Instagram Followers – ₹25</strong></p>
-    <p>Fast delivery • No password required • Safe & secure</p>
+  <!-- STEP 2: FOLLOWERS SELECT -->
+  <div id="step2" class="hidden">
+    <h2>Select Followers</h2>
+    <select id="package">
+      <option value="1K|25">1K Followers - ₹25</option>
+      <option value="2K|50">2K Followers - ₹50</option>
+      <option value="5K|125">5K Followers - ₹125</option>
+      <option value="10K|250">10K Followers - ₹250</option>
+    </select>
+    <button onclick="goStep3()">Proceed to Payment</button>
   </div>
-</section>
 
-<section id="payment">
-  <div class="card">
-    <h2>Payment Methods</h2>
-    <p>Complete your payment using any method below and send screenshot on WhatsApp:</p>
-    <ul>
-      <li><strong>UPI:</strong> yourupi@bank</li>
-      <li><strong>PhonePe:</strong> +91 XXXXX XXXXX</li>
-      <li><strong>Google Pay:</strong> +91 XXXXX XXXXX</li>
-    </ul>
-    <p><em>After payment, delivery starts within minutes.</em></p>
+  <!-- STEP 3: PAYMENT -->
+  <div id="step3" class="hidden">
+    <h2>Payment</h2>
+    <p id="summary"></p>
+
+    <a id="payLink">
+      <button>PAY NOW</button>
+    </a>
+
+    <br><br>
+
+    <button onclick="paymentDone()">Payment Done</button>
   </div>
-</section>
 
-<footer>
-  <p>© 2026 GRAMVIO. All rights reserved.</p>
-</footer>
+</div>
 
 <script>
-  // WhatsApp order button functionality using Varma's number
-  document.getElementById('orderForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = this[0].value;
-    const insta = this[1].value;
-    const mobile = this[2].value;
-    const followers = this[3].value;
-    const message = `Name: ${name}%0AInstagram: ${insta}%0AMobile: ${mobile}%0AFollowers: ${followers}`;
-    window.open(`https://wa.me/919703760912?text=${message}`, '_blank');
-  });
+let amount = 0;
+
+function goStep2() {
+  if(!name.value || !mobile.value || !insta.value){
+    alert("Please fill all details");
+    return;
+  }
+  step1.classList.add("hidden");
+  step2.classList.remove("hidden");
+}
+
+function goStep3() {
+  const pack = package.value.split("|");
+  const followers = pack[0];
+  amount = pack[1];
+
+  summary.innerHTML =
+    "Package: " + followers + "<br>Amount: ₹" + amount;
+
+  payLink.href =
+    "upi://pay?pa=9703760912@upi&pn=GRAMVIO&am=" + amount + "&cu=INR";
+
+  step2.classList.add("hidden");
+  step3.classList.remove("hidden");
+}
+
+function paymentDone() {
+  alert(
+    "Order Received ✅\n\n" +
+    "Name: " + name.value + "\n" +
+    "Mobile: " + mobile.value + "\n" +
+    "Instagram: " + insta.value + "\n" +
+    "Amount: ₹" + amount
+  );
+}
 </script>
 
 </body>
 </html>
-

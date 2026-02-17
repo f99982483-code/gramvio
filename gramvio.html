@@ -3,189 +3,248 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Growvin</title>
+<title>Growvin • Instagram Growth</title>
 
 <style>
-/* ====== COMMON ====== */
 body{
   margin:0;
-  font-family:Arial, sans-serif;
-  background:#0f2027;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
   color:#fff;
 }
+
 .page{
   display:none;
   min-height:100vh;
   padding:40px 20px;
-  box-sizing:border-box;
   text-align:center;
 }
-.active{display:block;}
-.btn{
-  background:#25D366;
-  color:#fff;
-  padding:14px 30px;
-  border:none;
-  border-radius:30px;
-  font-size:18px;
-  cursor:pointer;
+
+#page1{display:block;}
+
+.logo{
+  font-size:42px;
+  font-weight:bold;
 }
-.btn.blue{background:#1e90ff}
-.btn.dark{background:#2c5364}
-input,select{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:6px;
-  border:none;
-  font-size:16px;
+
+.subtitle{
+  opacity:.9;
+  margin-bottom:30px;
 }
+
 .card{
   max-width:420px;
   margin:20px auto;
   background:#fff;
   color:#000;
   padding:25px;
-  border-radius:12px;
+  border-radius:18px;
 }
 
-/* ====== PAGE 1 (WELCOME + PROOFS) ====== */
-.welcome h1{
-  font-size:44px;
-  animation:fadeDown 1.5s ease;
-}
-.welcome p{
-  opacity:0.9;
-  animation:fadeUp 2s ease;
-}
-.proofs{
-  margin-top:60px;
-}
-.proof-box{
-  background:#ffffff;
-  color:#000;
-  padding:20px;
-  border-radius:10px;
-  margin:15px auto;
-  max-width:420px;
+/* ✅ BLUE BUTTON + HOVER + GLOW */
+.btn{
+  width:100%;
+  background:linear-gradient(45deg,#007bff,#0047ab);
+  color:#fff;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 0 10px rgba(0,123,255,0.4);
 }
 
-/* ====== PAGE 3 (QR) ====== */
+.btn:hover{
+  transform:scale(1.05);
+  box-shadow:
+    0 0 10px #007bff,
+    0 0 20px #007bff,
+    0 0 40px #007bff;
+}
+
+input,select{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:16px;
+}
+
 .qr{
   width:220px;
+  border-radius:16px;
   margin:20px auto;
+  box-shadow:0 10px 25px rgba(0,0,0,.3);
 }
 
-/* ====== PAGE 4 (ANIMATION) ====== */
-.thanks h2{
-  animation:pulse 1.5s infinite;
-}
-
-/* ====== ANIMATIONS ====== */
-@keyframes fadeDown{
-  from{opacity:0;transform:translateY(-40px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.08)}
-  100%{transform:scale(1)}
-}
-
-/* WhatsApp */
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  color:#fff;
-  padding:14px 18px;
-  border-radius:50%;
-  font-size:22px;
-  text-decoration:none;
+.proof{
+  background:#fff;
+  color:#000;
+  padding:15px;
+  border-radius:12px;
+  margin:10px auto;
+  max-width:420px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= PAGE 1 ================= -->
-<div class="page welcome active" id="page1">
-  <h1>Welcome to Growvin</h1>
-  <p>Boost Your Instagram Growth Safely 🚀</p>
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+  <div class="logo">Growvin</div>
+  <div class="subtitle">Instagram Followers Growth 🚀</div>
 
-  <div class="proofs">
-    <h2>Our Proofs</h2>
+  <div class="proof">✅ Real & Active Followers</div>
+  <div class="proof">⏱ Delivery within 24 Hours</div>
+  <div class="proof">💯 Trusted Service</div>
 
-    <!-- Dummy proofs (replace images later if needed) -->
-    <div class="proof-box">✔️ 5K Followers Delivered in 24 Hours</div>
-    <div class="proof-box">✔️ Real & Active Profiles</div>
-    <div class="proof-box">✔️ 100+ Happy Customers</div>
-
-    <br>
-    <button class="btn" onclick="go(2)">Continue</button>
-  </div>
+  <br>
+  <button class="btn" onclick="go(2)">Continue</button>
 </div>
 
-<!-- ================= PAGE 2 ================= -->
+<!-- PAGE 2 -->
 <div class="page" id="page2">
-  <h2>Enter Your Details</h2>
+  <h2>Enter Your Instagram Details</h2>
 
   <div class="card">
-    <input id="name" placeholder="Name" required>
-    <input id="mobile" placeholder="Mobile Number" required>
-    <input id="insta" placeholder="Instagram ID" required>
+
+    <input id="name" placeholder="Your Name *">
+
+    <input id="mobile" placeholder="Mobile Number *">
+
+    <input id="insta" placeholder="Instagram Username *">
 
     <select id="followers">
-      <option value="">Followers Range</option>
-      <option>0 – 1K</option>
-      <option>1K – 5K</option>
-      <option>5K – 10K</option>
-      <option>10K+</option>
+      <option value="">Select Followers Plan *</option>
+      <option value="1K - ₹28">1K - ₹28</option>
+      <option value="5K - ₹50">5K - ₹50</option>
+      <option value="10K - ₹100">10K - ₹100</option>
+      <option value="20K - ₹200">20K - ₹200</option>
     </select>
 
-    <button class="btn blue" onclick="go(3)">Pay Now</button>
+    <button class="btn" onclick="payNow()">Pay Now</button>
+
   </div>
 </div>
 
-<!-- ================= PAGE 3 ================= -->
+<!-- PAGE 3 -->
 <div class="page" id="page3">
+
   <h2>Scan & Pay</h2>
 
-  <!-- Replace src with YOUR QR IMAGE -->
-  <img src="https://via.placeholder.com/220x220?text=QR+CODE" class="qr">
+  <img src="myqr.png" class="qr">
 
-  <p>Upload Payment Screenshot</p>
+  <p>Upload Payment Screenshot *</p>
+
   <input type="file" id="screenshot" accept="image/*">
 
   <br><br>
-  <button class="btn dark" onclick="go(4)">Submit Payment Proof</button>
+
+  <button class="btn" onclick="submitPayment()">Submit Payment</button>
+
 </div>
 
-<!-- ================= PAGE 4 ================= -->
-<div class="page thanks" id="page4">
-  <h2>🎉 Thank You!</h2>
-  <p style="font-size:20px;">
-    Within <b>24 Hours</b> Followers Will Be Added ⏳
-  </p>
-  <p>Our team will contact you if needed.</p>
+<!-- PAGE 4 -->
+<div class="page" id="page4">
 
-  <br>
+  <h2>🎉 Thank You</h2>
+
+  <p>Followers will be added within 24 hours</p>
+
   <button class="btn" onclick="go(1)">Back to Home</button>
-</div>
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/918688752652" target="_blank" class="whatsapp">💬</a>
+</div>
 
 <script>
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbw4BvEdVbYvOZr7tswFcozNM8987yEaIuTxkDAqAbxQmwoVl1NgUVZSTGoAHyE-f9dJ/exec";
+
+let userData = {};
+
 function go(n){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page'+n).classList.add('active');
+
+  document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+
+  document.getElementById("page"+n).style.display="block";
+
 }
+
+function payNow(){
+
+  const name =
+  document.getElementById("name").value.trim();
+
+  const mobile =
+  document.getElementById("mobile").value.trim();
+
+  const insta =
+  document.getElementById("insta").value.trim();
+
+  const followers =
+  document.getElementById("followers").value;
+
+  if(!name || !mobile || !insta || !followers){
+
+    alert("Please fill all required fields");
+
+    return;
+
+  }
+
+  userData = {
+    name,
+    mobile,
+    insta,
+    followers
+  };
+
+  go(3);
+
+}
+
+function submitPayment(){
+
+  const file =
+  document.getElementById("screenshot").files[0];
+
+  if(!file){
+
+    alert("Upload screenshot");
+
+    return;
+
+  }
+
+  const reader =
+  new FileReader();
+
+  reader.onload =
+  function(){
+
+    fetch(SCRIPT_URL,{
+      method:"POST",
+      body:JSON.stringify({
+        ...userData,
+        screenshot:reader.result
+      })
+    })
+
+    .then(()=>{
+
+      go(4);
+
+    });
+
+  };
+
+  reader.readAsDataURL(file);
+
+}
+
 </script>
 
 </body>
